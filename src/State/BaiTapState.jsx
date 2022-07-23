@@ -2,11 +2,22 @@
 import React, { Component } from 'react'
 
 export default class BaiTapState extends Component {
-
+    arrImg = ['./img/products/black-car.jpg','./img/products/red-car.jpg','./img/products/silver-car.jpg','./img/products/steel-car.jpg']
     state = {
         imgSrc: './img/products/black-car.jpg', //state default 
         fSize:16
     }
+
+    randomImgSrc = () => {
+        let output = Math.floor(Math.random() * 4); // 0 | 1 | 2 |3
+        console.log(output);
+        
+        this.setState({
+            imgSrc: this.arrImg[output]
+        })
+
+    }
+
   render() {
     return (
       <div className='container'>
@@ -16,6 +27,9 @@ export default class BaiTapState extends Component {
                 <img className='w-100' src={this.state.imgSrc} alt='...' />
             </div>
             <div className='col-6'>
+                <button onClick={()=>{
+                    this.randomImgSrc();
+                }}>random</button>
                 <button className='btn btn-danger m-2' onClick={()=>{
                     //Thay đổi hình
                     this.setState({
