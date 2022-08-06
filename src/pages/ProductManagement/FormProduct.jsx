@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export default class FormProduct extends Component {
-    
+
     state = {
         productInfo: {
             id: '',
@@ -24,19 +24,19 @@ export default class FormProduct extends Component {
         let { id, value } = e.target;//name , nguyễn văn a
         let dataType = e.target.getAttribute('data-type');
         //Xử lý product info
-        let newValue = {...this.state.productInfo};
+        let newValue = { ...this.state.productInfo };
         newValue[id] = value;
         //Xử lý lỗi
-        let newErrors = {...this.state.errors};
+        let newErrors = { ...this.state.errors };
         //check rổng
         let errorMess = '';
-        if(value.trim() === ''){
+        if (value.trim() === '') {
             errorMess = id + ' không được bỏ trống';
-        }else {
+        } else {
             //Lỗi định dạng
-            if(dataType == 'number'){
+            if (dataType == 'number') {
                 let regexNumber = /^\d+$/;
-                if(!regexNumber.test(value)){
+                if (!regexNumber.test(value)) {
                     errorMess = id + ' phải là số !';
                 }
             }
@@ -44,8 +44,8 @@ export default class FormProduct extends Component {
         newErrors[id] = errorMess;
         //setState
         this.setState({
-            productInfo:newValue,
-            errors:newErrors
+            productInfo: newValue,
+            errors: newErrors
         }, () => {
             console.log(this.state);
         })
@@ -56,41 +56,60 @@ export default class FormProduct extends Component {
         e.preventDefault();
         //check trước khi submit dữ liệu
         let valid = true;
-        let {errors,productInfo} = this.state;
+        let { errors, productInfo } = this.state;
         //check error (tất cả error phải rỗng)
-        for(let key in errors){
-            if(errors[key] !== ''){
+        for (let key in errors) {
+            if (errors[key] !== '') {
                 valid = false;
                 break;
             }
         }
-        
+
         //check value (productInfo) tất cả value phải khác rỗng
-        for(let key in productInfo) {
-            if(productInfo[key] === '') {
+        for (let key in productInfo) {
+            if (productInfo[key] === '') {
                 errors[key] = key + 'Không được bỏ trống !';
                 valid = false;
                 // break;
             }
         }
-        
-        if(!valid) {
+
+        if (!valid) {
             console.log(valid);
             this.setState({
-                errors:errors
+                errors: errors
             });
             alert('Dữ liệu không hợp lệ');
             return;
         }
-
         //Hợp lệ
         // alert('submitted');
         this.props.createProduct(productInfo);
     }
+
+
+    // static getDerivedStateFromProps(newProps,currentState) {
+    //     //Lấy props.productEdit => Gán vào state.productInfo => sau đó giao diện lấy ra từ state
+    //     if(newProps.productEdit.id !== currentState.productInfo.id) {
+    //         //Bấm nút edit
+    //         currentState.productInfo = newProps.productEdit;
+    //         return currentState; // hàm này sẽ tạo ra this.state mới
+    //     }
+    //     return null;
+    // }
+
+    //Chạy trước render sau khi props thay đổi
+    componentWillReceiveProps(newProps) {
+        //Khi bấm nút chỉnh sửa lấy props gán vào state => giao diện render ra từ state
+        this.setState({
+            productInfo: newProps.productEdit
+        })
+    }
+
     render() {
 
-        console.log(this.props.productEdit)
-        let {id,name,productType,img,description,price} = this.props.productEdit;
+        // console.log(this.props.productEdit)
+        let { id, name, productType, img, description, price } = this.state.productInfo;
         return (
             <form className='card' onSubmit={this.handleSubmit}>
                 <div className='card-header bg-dark text-warning' style={{ fontSize: 20, fontWeight: 'bold' }}>
@@ -100,15 +119,15 @@ export default class FormProduct extends Component {
                     <div className='col-6'>
                         <div className='form-group'>
                             <p>Id</p>
-                            <input 
-                            value={id}
-                            className='form-control' id="id" name="id" onChange={this.handleChange} />
+                            <input
+                                value={id}
+                                className='form-control' id="id" name="id" onChange={this.handleChange} />
                             <p className='text-danger'>{this.state.errors.id}</p>
                         </div>
                         <div className='form-group'>
                             <p>name</p>
-                            <input 
-                            value={name}className='form-control' id="name" name="name" onChange={this.handleChange} />
+                            <input
+                                value={name} className='form-control' id="name" name="name" onChange={this.handleChange} />
                             <p className='text-danger'>{this.state.errors.name}</p>
                         </div>
                         <div className='form-group'>
@@ -120,13 +139,13 @@ export default class FormProduct extends Component {
                     <div className='col-6'>
                         <div className='form-group'>
                             <p>Img link</p>
-                            <input className='form-control' id="img" name="img" value={img} onChange={this.handleChange} /> 
+                            <input className='form-control' id="img" name="img" value={img} onChange={this.handleChange} />
                             <p className='text-danger'>{this.state.errors.img}</p>
                         </div>
                         <div className='form-group'>
                             <p>Product type</p>
-                            <select 
-                            value={productType}className='form-control' id="productType" name="productType" onChange={this.handleChange}>
+                            <select
+                                value={productType} className='form-control' id="productType" name="productType" onChange={this.handleChange}>
                                 <option>mobile</option>
                                 <option>tablet</option>
                                 <option>laptop</option>
@@ -134,8 +153,8 @@ export default class FormProduct extends Component {
                         </div>
                         <div className='form-group'>
                             <p>Product descriptiong</p>
-                            <textarea 
-                            value={description}className='form-control' id="description" name="description" rows={3} onChange={this.handleChange} >
+                            <textarea
+                                value={description} className='form-control' id="description" name="description" rows={3} onChange={this.handleChange} >
                             </textarea>
                             <p className='text-danger'>{this.state.errors.description}</p>
                         </div>
@@ -143,7 +162,9 @@ export default class FormProduct extends Component {
                 </div>
                 <div className='card-footer'>
                     <button className='btn btn-success mx-2'>Create</button>
-                    <button className='btn btn-primary mx-2'>Update</button>
+                    <button className='btn btn-primary mx-2' type="button" onClick={() => {
+                        this.props.updateProduct(this.state.productInfo)
+                    }}>Update</button>
                 </div>
             </form>
         )

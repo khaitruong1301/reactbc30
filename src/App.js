@@ -6,7 +6,6 @@ import { NavLink, Outlet } from 'react-router-dom'
 
 //Component 
 function App() {
-
   return (
     <div>
       {/*bs5-navbar-background */}
@@ -37,6 +36,9 @@ function App() {
               <li className="nav-item">
                 <NavLink className={({isActive})=> isActive ? 'bg-light text-dark nav-link' : 'nav-link' } to="/reactform">React Form</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className={({isActive})=> isActive ? 'bg-light text-dark nav-link' : 'nav-link' } to="/lifecycle">Lifecycle</NavLink>
+              </li>
               {/* <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                 <div className="dropdown-menu" aria-labelledby="dropdownId">
@@ -52,9 +54,8 @@ function App() {
           </div>
         </nav>
       </div>
-
       {/*Nội dung thay đổi bởi path con */}
-      <div style={{ minHeight: 500 }}>
+      <div style={{ minHeight: 800 }}>
         <Outlet />
       </div>
       <footer className="bg-dark text-white  text-center p-5">

@@ -10,6 +10,7 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Page404 from './pages/Page404/Page404';
 import ProductManagement from './pages/ProductManagement/ProductManagement';
+import ReactLifeCycle from './ReactLifeCycle/ReactLifeCycle';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
                 <Route path="contact" element={<Contact />} > </Route>
                 <Route path="about" element={<About />} > </Route>
                 <Route path="reactform" element={<ProductManagement />} > </Route>
+                <Route path="lifecycle" element={<ReactLifeCycle />} > </Route>
                 {/* <Route path='*' element={<Page404 />}></Route> */}
                 <Route path='*' element={<Navigate to="" />}></Route>
 
