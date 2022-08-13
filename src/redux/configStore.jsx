@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from 'redux';
+import { demoGioHangReducer } from './reducers/demoGioHangReducer';
 import { imgCarReducer } from './reducers/imgCarReducer';
 import { numberReducer } from './reducers/numberReducer';
 import { qlsvReducer } from './reducers/qlsvReducer';
@@ -7,7 +8,9 @@ import { qlsvReducer } from './reducers/qlsvReducer';
 const rootReducer = combineReducers({
     number: numberReducer,
     imgCar: imgCarReducer,
-    qlsvReducer //object literal
+    qlsvReducer,
+    demoGioHangReducer:demoGioHangReducer
+    //object literal
     //stateA,....
 
 });

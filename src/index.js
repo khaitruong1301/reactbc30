@@ -17,6 +17,7 @@ import { store } from './redux/configStore';
 import DemoTangGiamSoLuong from './pages/DemoRedux/DemoTangGiamSoLuong/DemoTangGiamSoLuong';
 import DemoChangeColor from './pages/DemoRedux/DemoChangeColor/DemoChangeColor';
 import DemoQLSV from './pages/DemoRedux/DemoQLSV/DemoQLSV';
+import DemoGioHang from './pages/DemoRedux/DemoGioHang/DemoGioHang';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,6 +36,7 @@ root.render(
                     <Route path="demoredux" element={<DemoTangGiamSoLuong />} > </Route>
                     <Route path="demochangecar" element={<DemoChangeColor />} > </Route>
                     <Route path="qlsv" element={<DemoQLSV />} > </Route>
+                    <Route path="demogiohang" element={<DemoGioHang />} > </Route>
                     
                     {/* <Route path='*' element={<Page404 />}></Route> */}
                     <Route path='*' element={<Navigate to="" />}></Route>
