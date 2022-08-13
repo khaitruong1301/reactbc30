@@ -30,9 +30,9 @@ export default class ProductManagement extends Component {
 
 
   //this.state.arrProduct = [{},{},{}]
-  updateProduct = (productUpdate) => {
+  updateProduct = (productUpdate) => { // {id:2,...}
     //Lấy ra dữ liệu trong mảng (prodUpdate) 
-    let prodUpdate = this.state.arrProduct.find(pro => pro.id == productUpdate.id);
+    let prodUpdate = this.state.arrProduct.find(p => p.id == productUpdate.id);
     if(prodUpdate){
         for(let key in prodUpdate){
             prodUpdate[key] = productUpdate[key];
