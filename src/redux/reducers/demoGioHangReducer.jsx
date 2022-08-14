@@ -51,7 +51,6 @@ const stateDefault = {
 
 
 export const demoGioHangReducer = (state= stateDefault,action) => {
-
     switch(action.type) {
         case 'THEM_GIO_HANG': {
           //B1: Lấy giá trị từ action gửi lên
@@ -70,6 +69,38 @@ export const demoGioHangReducer = (state= stateDefault,action) => {
           //B3: Cập nhật lại state
           state.gioHang = gioHangUpdate;
           return {...state};
+        }
+        case 'XOA_GIO_HANG' :{
+          //B1: Lấy giá trị từ action gửi lên 
+          let {maSPClick} = action.payload;
+          //B2: Xử lý clone arr hoặc object ra 1 biến
+          let gioHangUpdate = [...state.gioHang];
+          gioHangUpdate = gioHangUpdate.filter(sp => sp.maSP !== maSPClick);
+          //B3: Cập nhật lại state
+          state.gioHang = gioHangUpdate;
+          return {...state}
+        }
+        case 'TANG_GIAM_SO_LUONG': {
+            //B1: Lấy giá trị từ action gửi lên
+            let {maSP,soLuong} = action.payload;
+            //B2: Clone các object array ...
+            let gioHangUpdate = [...state.gioHang];
+            let sp = gioHangUpdate.find(sp => sp.maSP === maSP);
+            if(sp) {
+              sp.soLuong += soLuong;
+              if(sp.soLuong < 1) {
+                //Xử lý xoá 
+                if(window.confirm('Bạn có muốn xoá không')) {
+                  gioHangUpdate = gioHangUpdate.filter(sp=>sp.maSP !== maSP);
+                }else {
+                  // sp.soLuong -= soLuong;
+                  sp.soLuong = 1;
+                }
+              }
+            }
+            //B3: Cập nhật lại state giỏ hàng
+            state.gioHang = gioHangUpdate;
+            return {...state};
         }
         default: return state;
     }

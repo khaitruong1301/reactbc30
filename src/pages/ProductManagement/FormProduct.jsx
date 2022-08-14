@@ -88,23 +88,23 @@ export default class FormProduct extends Component {
     }
 
 
-    // static getDerivedStateFromProps(newProps,currentState) {
-    //     //Lấy props.productEdit => Gán vào state.productInfo => sau đó giao diện lấy ra từ state
-    //     if(newProps.productEdit.id !== currentState.productInfo.id) {
-    //         //Bấm nút edit
-    //         currentState.productInfo = newProps.productEdit;
-    //         return currentState; // hàm này sẽ tạo ra this.state mới
-    //     }
-    //     return null;
-    // }
-
-    //Chạy trước render sau khi props thay đổi
-    componentWillReceiveProps(newProps) {
-        //Khi bấm nút chỉnh sửa lấy props gán vào state => giao diện render ra từ state
-        this.setState({
-            productInfo: newProps.productEdit
-        })
+    static getDerivedStateFromProps(newProps,currentState) {
+        //Lấy props.productEdit => Gán vào state.productInfo => sau đó giao diện lấy ra từ state
+        // if(newProps.productEdit.id !== currentState.productInfo.id) {
+            //Bấm nút edit
+            currentState.productInfo = newProps.productEdit;
+            return currentState; // hàm này sẽ tạo ra this.state mới
+        // }
+        // return null;
     }
+
+    // //Chạy trước render sau khi props thay đổi
+    // componentWillReceiveProps(newProps) {
+    //     //Khi bấm nút chỉnh sửa lấy props gán vào state => giao diện render ra từ state
+    //     this.setState({
+    //         productInfo: newProps.productEdit
+    //     })
+    // }
 
     render() {
 

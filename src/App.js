@@ -46,6 +46,8 @@ function App() {
                   <NavLink className="dropdown-item" to="/demochangecar">Demo chọn xe</NavLink>
                   <NavLink className="dropdown-item" to="/qlsv">Demo QLSV</NavLink>
                   <NavLink className="dropdown-item" to="/demogiohang">Demo Giỏ hàng</NavLink>
+                  <NavLink className="dropdown-item" to="/demoburger">Demo burger</NavLink>
+                
                 </div>
               </li>
             </ul>

@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from 'redux';
+import { demoBurgerReducer } from './reducers/demoBurgerReducer';
 import { demoGioHangReducer } from './reducers/demoGioHangReducer';
 import { imgCarReducer } from './reducers/imgCarReducer';
 import { numberReducer } from './reducers/numberReducer';
@@ -9,12 +10,14 @@ const rootReducer = combineReducers({
     number: numberReducer,
     imgCar: imgCarReducer,
     qlsvReducer,
-    demoGioHangReducer:demoGioHangReducer
+    demoGioHangReducer:demoGioHangReducer,
+    demoBurgerReducer:demoBurgerReducer
     //object literal
     //stateA,....
 
 });
-
+//option + esc 
+// control + space
 /*
     state = {
         number:1
